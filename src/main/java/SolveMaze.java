@@ -26,7 +26,8 @@ public class SolveMaze {
          * Pick (0, 0), the bottom left corner, as the starting point.
          * Put the end in the top right corner.
          */
-        maze.startAtZero();
+        //maze.startAtZero();
+        maze.startAtRandomLocation();
         maze.endAtTopRight();
 
         /*
@@ -35,6 +36,16 @@ public class SolveMaze {
          */
         for (int step = 0; step < 1000; step++) {
             // Implement your maze solving algorithm here
+            if (!maze.isFinished()) {
+                maze.turnLeft();
+                while (!maze.canMove()) {
+                    maze.turnRight();
+                }
+                maze.move();
+            } else {
+                System.out.println(step);
+                break;
+            }
         }
 
         if (maze.isFinished()) {
